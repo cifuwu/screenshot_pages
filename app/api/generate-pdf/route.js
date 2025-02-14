@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
   // Obtener los parámetros de la URL
   const { searchParams } = new URL(request.url);
-  const url = searchParams.get("url") || "https://www.cifu.app/1"; 
+  const url = searchParams.get("url") || "https://www.cifu.app/"; 
   const name = searchParams.get("name") || "file"; 
 
   console.log(`Generating pdf of the page: ${url}`);
@@ -21,12 +21,18 @@ export async function GET(request) {
       waitUntil: "networkidle2",
     });
 
+    // Obtener el tamaño de la página
+    const bodyHandle = await page.$('body');
+    const { width, height } = await bodyHandle.boundingBox();
+    await bodyHandle.dispose();
+
     // Generar PDF en memoria
     const pdfBuffer = await page.pdf({
-      format: "A4",
+      width: `${width}px`,
+      height: `${height}px`,
       printBackground: true,
+      pageRanges: '1',
     });
-
     await browser.close();
 
     // Devolver el PDF como respuesta
