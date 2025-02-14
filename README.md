@@ -7,7 +7,7 @@
 Primero, instala las dependencias:
 
 ```bash
-npm run install
+npm install
 # o
 yarn 
 # o
