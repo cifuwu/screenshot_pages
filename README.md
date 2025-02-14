@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 PDF Pages Generator
 
-## Getting Started
+#### Este es un proyecto con la finalidad de presentar una API que genera un pdf de una página web proporcionada.
 
-First, run the development server:
+## Comenzando
+
+Primero, instala las dependencias:
 
 ```bash
+npm run install
+# o
+yarn 
+# o
+pnpm install
+# o
+bun install
+```
+Luego, ejecuta el servidor de desarrollo:
+```bash
 npm run dev
-# or
+# o
 yarn dev
-# or
+# o
 pnpm dev
-# or
+# o
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Ejecutar con Docker (Sólo para producción)
 
-## Learn More
+Para ejecutar este proyecto con Docker, sigue estos pasos:
 
-To learn more about Next.js, take a look at the following resources:
+1. Construye la imagen Docker:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    docker build -t pages-pdf-generator
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Ejecuta el contenedor Docker:
 
-## Deploy on Vercel
+    ```
+    docker run -p 3000:3000 pages-pdf-generator
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Si lo prefieres, puedes ejecutar el proyecto con Docker Compose:
+    
+    docker compose up -d --build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
+
+## API Generación de pdf
+
+Este proyecto incluye una API para generar PDFs. El endpoint principal es:
+
+### `GET /api/generate-pdf`
+
+Este endpoint recibe una URL y genera un PDF de la página web proporcionada.
+
+#### Ejemplo de solicitud
+
+```bash
+curl -X GET http://localhost:3000/api/generate-pdf?url=https://www.google.com/&name=page_google
+```
+
+#### Parámetros
+
+- `url` (string): La URL de la página web que deseas convertir en PDF.
+
+- `name` (string): Nombre del archivo pdf. Por defecto se llama file
+
+#### Respuesta
+
+La respuesta será un archivo PDF generado a partir de la página web proporcionada.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/pdf
+Content-Disposition: attachment; filename="file.pdf"
+
+...contenido del PDF...
+```
