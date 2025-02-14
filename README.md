@@ -62,7 +62,7 @@ Este endpoint recibe una URL y genera un PDF de la página web proporcionada.
 #### Ejemplo de solicitud
 
 ```bash
-curl -X GET http://localhost:3000/api/generate-pdf?url=https://www.google.com/&name=page_google
+curl -X GET http://localhost:3000/api/generate-pdf?url=https://www.google.com&name=page_google
 ```
 
 #### Parámetros
