@@ -84,7 +84,7 @@ export default function HomeComponent() {
       <h2 className="text-xl md:text-2xl font-semibold text-gray-800 text-center">Hello my beautiful people ❤️</h2>
       <p className="text-gray-600 text-sm text-center font-medium max-w-sm mx-auto my-2">Select one of the options to generate a PDF, an image or a screenshot.</p>
       
-      <div className="flex gap-2 mx-auto mb-4 mt-10">
+      <div className="flex flex-wrap justify-center items-center gap-2 mx-auto mb-4 mt-10">
         <button 
           className={`w-32 border border-gray-800 rounded-md py-1.5 px-4 text-gray-800 font-medium ${option==='PDF' ? 'bg-gray-800 text-white' : 'hover:bg-gray-300'} transition-colors`}
           onClick={() => setOption("PDF")}
