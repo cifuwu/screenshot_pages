@@ -35,7 +35,7 @@ Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el
 > Asegúrate de tener Docker instalado y en funcionamiento en tu sistema antes de continuar.
 
 > [!WARNING]
-> Esta imagen de Docker no es compatible con procesadores ARM, como los de Apple.
+> Esta imagen de Docker no es compatible con procesadores ARM. 
 
 Para ejecutar este proyecto con Docker, sigue estos pasos:
 
