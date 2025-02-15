@@ -51,9 +51,9 @@ Si lo prefieres, puedes ejecutar el proyecto con Docker Compose:
 
 Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
 
-## API Generación de pdf
+## API
 
-Este proyecto incluye una API para generar PDFs. El endpoint principal es:
+Este proyecto incluye una API para generar PDFs e imágenes. Los endpoint son:
 
 ### `GET /api/generate-pdf`
 
@@ -69,7 +69,7 @@ curl -X GET http://localhost:3000/api/generate-pdf?url=https://www.google.com&na
 
 - `url` (string): La URL de la página web que deseas convertir en PDF.
 
-- `name` (string): Nombre del archivo pdf. Por defecto se llama file
+- `name` (string): Nombre del archivo pdf. Por defecto se llama file.
 
 #### Respuesta
 
@@ -80,5 +80,70 @@ HTTP/1.1 200 OK
 Content-Type: application/pdf
 Content-Disposition: attachment; filename="file.pdf"
 
-...contenido del PDF...
+..contenido del PDF..
+```
+
+
+
+### `GET /api/generate-image`
+
+Este endpoint recibe una URL y genera un Imagen (mostrando la página completa) de la página web proporcionada.
+
+#### Ejemplo de solicitud
+
+```bash
+curl -X GET http://localhost:3000/api/generate-image?url=https://www.google.com&name=page_google
+```
+
+#### Parámetros
+
+- `url` (string): La URL de la página web que deseas convertir en una imagen.
+
+- `name` (string): Nombre del archivo image. Por defecto se llama image.
+
+#### Respuesta
+
+La respuesta será un archivo Image generado a partir de la página web proporcionada.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: image/png
+Content-Disposition: attachment; filename="image.png"
+
+..contenido de la imagen..
+```
+
+
+
+
+### `GET /api/generate-screenshot`
+
+Este endpoint recibe una URL y genera un Screenshot (image) de la página web proporcionada.
+
+#### Ejemplo de solicitud
+
+```bash
+curl -X GET http://localhost:3000/api/generate-screenshot?url=https://www.google.com&name=page_google&width=1920&height=1080
+```
+
+#### Parámetros
+
+- `url` (string): La URL de la página web que deseas convertir en una imagen.
+
+- `name` (string): Nombre del archivo image. Por defecto se llama screenshot.
+
+- `width` (int): Ancho en pixeles de la captura de pantalla (simulará una pantalla de ese ancho).
+
+- `height` (int): Alto en pixeles de la captura de pantalla (simulará una pantalla de esa altura).
+
+#### Respuesta
+
+La respuesta será un archivo Image generado a partir de la página web proporcionada.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: image/png
+Content-Disposition: attachment; filename="screenshot.png"
+
+..contenido de la imagen..
 ```
