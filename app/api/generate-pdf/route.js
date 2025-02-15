@@ -2,6 +2,16 @@ import puppeteer from "puppeteer";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
+  if (request.method === "OPTIONS") {
+    return new NextResponse(null, { status: 204, headers: corsHeaders });
+  }
+
   // Obtener los parámetros de la URL
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url") || "https://www.cifu.app/"; 
@@ -50,6 +60,7 @@ export async function GET(request) {
     // Devolver el PDF como respuesta
     return new NextResponse(pdfBuffer, {
       headers: {
+        ...corsHeaders,
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename=${name}.pdf`,
       },
@@ -58,6 +69,6 @@ export async function GET(request) {
   }
   catch (error) {
     console.error('PDF generation error:', error);
-    return new NextResponse("Error generating PDF", { status: 500 });
+    return new NextResponse("Error generating PDF", { status: 500, headers: corsHeaders });
   }
 }
