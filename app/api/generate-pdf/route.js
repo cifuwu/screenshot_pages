@@ -10,9 +10,16 @@ export async function GET(request) {
   console.log(`Generating pdf of the page: ${url}`);
 
   try{
+    // const browser = await puppeteer.launch({
+    //   headless: "new",
+    //   args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    // });
+
     const browser = await puppeteer.launch({
-      headless: "new",
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      executablePath: '/usr/bin/google-chrome',
+      headless: 'new',
+      ignoreDefaultArgs: ['--disable-extensions'],
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();
