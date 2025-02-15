@@ -25,9 +25,9 @@ RUN yarn install --frozen-lockfile
 
 COPY . /home/app
 
-RUN yarn build
-
 ENV APP_DOCKERIZED=true
+
+RUN yarn build
 
 EXPOSE 3000
 
