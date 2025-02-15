@@ -1,155 +1,148 @@
 # 📷 PDF and Screenshot Pages Generator
 
-#### Este es un proyecto con la finalidad de presentar una APP junto con una API que permite generar un PDF o un Screenshot (image) de una página web proporcionada desde una url.
+#### This project presents an APP along with an API that allows generating a PDF or a Screenshot (image) of a web page provided via a URL.
 
-## Instalación y ejecución
+## Installation and Execution
 
-Primero, instala las dependencias:
+First, install the dependencies:
 
 ```bash
 npm install
-# o
-yarn 
-# o
+# or
+yarn
+# or
 pnpm install
-# o
+# or
 bun install
 ```
-Luego, ejecuta el servidor de desarrollo:
+
+Then, run the development server:
 ```bash
 npm run dev
-# o
+# or
 yarn dev
-# o
+# or
 pnpm dev
-# o
+# or
 bun dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-
-## Ejecutar con Docker (Sólo para producción)
+## Running with Docker (Production Only)
 
 > [!NOTE]
-> Asegúrate de tener Docker instalado y en funcionamiento en tu sistema antes de continuar.
+> Make sure Docker is installed and running on your system before proceeding.
 
 > [!WARNING]
-> Esta imagen de Docker no es compatible con procesadores ARM. 
+> This Docker image is not compatible with ARM processors.
 
-Para ejecutar este proyecto con Docker, sigue estos pasos:
+To run this project with Docker, follow these steps:
 
-1. Construye la imagen Docker:
+1. Build the Docker image:
 
     ```bash
-    docker build -t pages-pdf-generator
+    docker build -t pages-pdf-generator .
     ```
 
-2. Ejecuta el contenedor Docker:
+2. Run the Docker container:
 
-    ```
+    ```bash
     docker run -p 3000:3000 pages-pdf-generator
     ```
 
-Si lo prefieres, puedes ejecutar el proyecto con Docker Compose:
+If you prefer, you can run the project using Docker Compose:
     
+    ```bash
     docker compose up -d --build
+    ```
 
-Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## API
 
-Este proyecto incluye una API para generar PDFs e imágenes. Los endpoint son:
+This project includes an API for generating PDFs and images. The available endpoints are:
 
 ### `GET /api/generate-pdf`
 
-Este endpoint recibe una URL y genera un PDF de la página web proporcionada.
+This endpoint receives a URL and generates a PDF of the provided web page.
 
-#### Ejemplo de solicitud
+#### Request Example
 
 ```bash
-curl -X GET http://localhost:3000/api/generate-pdf?url=https://www.google.com&name=page_google
+curl -X GET "http://localhost:3000/api/generate-pdf?url=https://www.google.com&name=page_google"
 ```
 
-#### Parámetros
+#### Parameters
 
-- `url` (string): La URL de la página web que deseas convertir en PDF.
+- `url` (string): The URL of the web page you want to convert into a PDF.
+- `name` (string): The name of the PDF file. The default name is `file`.
 
-- `name` (string): Nombre del archivo pdf. Por defecto se llama file.
+#### Response
 
-#### Respuesta
-
-La respuesta será un archivo PDF generado a partir de la página web proporcionada.
+The response will be a PDF file generated from the provided web page.
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/pdf
 Content-Disposition: attachment; filename="file.pdf"
 
-..contenido del PDF..
+..PDF content..
 ```
-
-
 
 ### `GET /api/generate-image`
 
-Este endpoint recibe una URL y genera un Imagen (mostrando la página completa) de la página web proporcionada.
+This endpoint receives a URL and generates an image (capturing the full page) of the provided web page.
 
-#### Ejemplo de solicitud
+#### Request Example
 
 ```bash
-curl -X GET http://localhost:3000/api/generate-image?url=https://www.google.com&name=page_google
+curl -X GET "http://localhost:3000/api/generate-image?url=https://www.google.com&name=page_google"
 ```
 
-#### Parámetros
+#### Parameters
 
-- `url` (string): La URL de la página web que deseas convertir en una imagen.
+- `url` (string): The URL of the web page you want to convert into an image.
+- `name` (string): The name of the image file. The default name is `image`.
 
-- `name` (string): Nombre del archivo image. Por defecto se llama image.
+#### Response
 
-#### Respuesta
-
-La respuesta será un archivo Image generado a partir de la página web proporcionada.
+The response will be an image file generated from the provided web page.
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: image/png
 Content-Disposition: attachment; filename="image.png"
 
-..contenido de la imagen..
+..image content..
 ```
-
-
-
 
 ### `GET /api/generate-screenshot`
 
-Este endpoint recibe una URL y genera un Screenshot (image) de la página web proporcionada.
+This endpoint receives a URL and generates a screenshot (image) of the provided web page.
 
-#### Ejemplo de solicitud
+#### Request Example
 
 ```bash
-curl -X GET http://localhost:3000/api/generate-screenshot?url=https://www.google.com&name=page_google&width=1920&height=1080
+curl -X GET "http://localhost:3000/api/generate-screenshot?url=https://www.google.com&name=page_google&width=1920&height=1080"
 ```
 
-#### Parámetros
+#### Parameters
 
-- `url` (string): La URL de la página web que deseas convertir en una imagen.
+- `url` (string): The URL of the web page you want to convert into an image.
+- `name` (string): The name of the screenshot file. The default name is `screenshot`.
+- `width` (int): The width in pixels of the screenshot (simulates a screen of this width).
+- `height` (int): The height in pixels of the screenshot (simulates a screen of this height).
 
-- `name` (string): Nombre del archivo image. Por defecto se llama screenshot.
+#### Response
 
-- `width` (int): Ancho en pixeles de la captura de pantalla (simulará una pantalla de ese ancho).
-
-- `height` (int): Alto en pixeles de la captura de pantalla (simulará una pantalla de esa altura).
-
-#### Respuesta
-
-La respuesta será un archivo Image generado a partir de la página web proporcionada.
+The response will be an image file generated from the provided web page.
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: image/png
 Content-Disposition: attachment; filename="screenshot.png"
 
-..contenido de la imagen..
+..image content..
 ```
+
