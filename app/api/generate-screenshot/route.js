@@ -7,8 +7,8 @@ export async function GET(request) {
   const url = searchParams.get("url") || "https://www.cifu.app/";
   const name = searchParams.get("name") || "screenshot";
   
-  const width = searchParams.get("width") || 1920;
-  const height = searchParams.get("height") || 1080;
+  const width = parseInt(searchParams.get("width")) || 1920;
+  const height = parseInt(searchParams.get("height")) || 1080;
 
   console.log(`Taking screenshot of the page: ${url}`);
 
