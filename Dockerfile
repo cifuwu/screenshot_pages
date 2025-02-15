@@ -27,6 +27,8 @@ COPY . /home/app
 
 RUN yarn build
 
+ENV APP_DOCKERIZED=true
+
 EXPOSE 3000
 
 # Give app user access to all the project folder
