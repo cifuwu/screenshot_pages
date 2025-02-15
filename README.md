@@ -1,6 +1,6 @@
 # 🚀 PDF Pages Generator
 
-#### Este es un proyecto con la finalidad de presentar una API que genera un pdf de una página web proporcionada.
+#### Este es un proyecto con la finalidad de presentar una APP junto con una API que permite generar un PDF o un screenshot (image) de una página web proporcionada desde una url.
 
 ## Comenzando
 
@@ -32,6 +32,12 @@ Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el
 ## Ejecutar con Docker (Sólo para producción)
 
 Para ejecutar este proyecto con Docker, sigue estos pasos:
+
+> [!NOTE]
+> Asegúrate de tener Docker instalado y en funcionamiento en tu sistema antes de continuar.
+
+> [!WARNING]
+> Esta imagen de Docker no es compatible con procesadores ARM, como los de Apple.
 
 1. Construye la imagen Docker:
 
