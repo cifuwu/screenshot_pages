@@ -61,7 +61,7 @@ If you prefer, you can run the project using Docker Compose:
     docker compose up -d --build
     ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+Open [http://localhost:3000](http://localhost:3500) in your browser to see the result.
 
 ## API
 
