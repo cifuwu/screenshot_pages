@@ -2,6 +2,10 @@
 
 #### This project presents an APP along with an API that allows generating a PDF or a Screenshot (image) of a web page provided via a URL.
 
+<p align="center">
+  <img width="600px" style="" src="https://cifu.nyc3.cdn.digitaloceanspaces.com/Disen%CC%83o%20sin%20ti%CC%81tulo.gif" alt="Example page">
+</p>
+
 ## Installation and Execution
 
 First, install the dependencies:
