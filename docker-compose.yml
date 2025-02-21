@@ -5,3 +5,4 @@ services:
       - '3500:3000'
     environment:
       - NODE_ENV=production
+    restart: always
